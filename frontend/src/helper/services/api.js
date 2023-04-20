@@ -33,7 +33,7 @@ export const ApiGet = (url, params = {}, options = {}) => {
 
 export const ApiPost = (url, fromData = {}, options = {}) => {
     fromData = fromData == null || fromData == undefined ? {} : fromData;
-    console.log(`${API_BASE_URL}/${url}`,"++++++++++",fromData)
+   // console.log(`${API_BASE_URL}/${url}`,"++++++++++",fromData)
     return new Promise((resolve, reject) => {
         axios.post(`${API_BASE_URL}/${url}`, fromData, getHttpMemberOptions(options, true))
             .then((responseJson) => {

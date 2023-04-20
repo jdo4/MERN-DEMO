@@ -4,7 +4,7 @@
 // const trailUrl = `${process.env.REACT_APP_TRAIL_URL}`;
 
 const protocol = `http`;
-const host = `192.168.1.3`;
+const host = `localhost`;
 const apiPort = `8080`;
 const trailUrl = `api/v1`;
 

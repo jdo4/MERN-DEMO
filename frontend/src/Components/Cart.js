@@ -23,15 +23,18 @@ export default function Cart() {
     cartDataList = cartDataList.filter((e) => e.productId !== id);
     setCart(cartDataList);
 
+    //delete product from database by ID
     ApiDelete(`cart/delete-product-to-cart/${id}`).then((res) => {
       toast.success("Item remove Successfully.");
     })
   };
 
 const cartGet = () => {
+  //GET all of the documents from cart
   ApiGet("cart/get")
   .then((res) => {
     if(res?.payload?.[0]?.products){
+      //display the recoed to user
       setCart(res?.payload?.[0]?.products)
     }
   })
@@ -45,6 +48,7 @@ const cartGet = () => {
       behavior: "smooth",
     });
 
+    //initial cart table document check
     cartGet()
    
   }, []);
@@ -57,14 +61,7 @@ const cartGet = () => {
       if (findIndex !== -1) {
         cartItem[findIndex].quantity = Number(event.target.value);
       }
-      // let cartData = localStorage.getItem(`cartData`);
-      // cartData = cartData ? JSON.parse(cartData) : [];
-      // let index = cartData.findIndex((e) => Number(e.id) === Number(id));
-      // if (index !== -1) {
-      //   cartData[index].quntity =
-      //     Number(event.target.value) > 0 ? event.target.value : 0;
-      // }
-      // localStorage.setItem("cartData", JSON.stringify(cartData));
+       
       setCart([...cartItem]);
     }
   };
@@ -85,18 +82,22 @@ const cartGet = () => {
     });
   };
 
+  //checkout form validation
   const validateFrom = () => {
     let error = {};
     const min = 3,
       max = 25;
     const isBetween = (length, min, max) =>
       length < min || length > max ? false : true;
+
+      //phone no validation
     const isPhoneValid = (p) => {
       var phoneRe = /^[2-9]\d{2}[2-9]\d{2}\d{4}$/;
       var digits = p.replace(/\D/g, "");
       return phoneRe.test(digits);
     };
 
+    //credit card no validation
     const isCreditCardNumberValid = (card_number) => {
       var cc =
         /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11}|62[0-9]{14})$/;
@@ -110,6 +111,7 @@ const cartGet = () => {
       return re.test(email);
     };
 
+    //showwing error if there is any wrong input
     if (!purchaseInput?.addre) {
       error["addre"] = "Address cannot be blank.";
     } else if (!isBetween(purchaseInput?.addre.length, min, max)) {
@@ -149,6 +151,7 @@ const cartGet = () => {
   };
 
   const onPurchase = (e) => {
+    //payment btn click function
     e.preventDefault();
     if (validateFrom()) {
       let subtotal = 0;
@@ -190,8 +193,9 @@ const cartGet = () => {
         invoiceNo: String(+new Date()),
       };
 
-      console.log(userInfo,"userInfo")
+     // console.log(userInfo,"userInfo")
 
+     //posting details into database
       ApiPost("order/purchase", userInfo)
       .then((res) => {
         toast.success("Order Successfully Created.");

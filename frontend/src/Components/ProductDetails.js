@@ -166,7 +166,34 @@ export default function ProductDetails() {
         <div className="row">
           <h2>Comments</h2>
         </div>
-        
+        <div className="comment-item">
+          {item?.comment?.map((record) => {
+            return (
+              <div className="comment-items">
+                <div className="username-icon">
+                  <Avatar
+                    name={record?.userId?.username}
+                    size={"32px"}
+                    color="green"
+                    round
+                    style={{ cursor: "pointer" }}
+                  />
+                </div>
+                <div className="comment-text">
+                <h4>{record?.userId?.username}</h4>
+                <span>{record?.text}</span>
+                </div>
+                <StarRating
+                  count={5}
+                  size={40}
+                  value={record?.rating}
+                  activeColor={"rgb(202, 179, 7)"}
+                  inactiveColor={"#ddd"}
+                />
+              </div>
+            );
+          })}
+        </div>
         <div className="comment-box">
           <div>
             <div className="comment-alignment">

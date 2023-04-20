@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { ApiPost } from "../helper/services/api";
-import axios from "axios";
+ 
 
 
 export default function Account() {
@@ -56,6 +56,7 @@ export default function Account() {
     setInput({ ...input, [name]: value });
   };
 
+  //password validation
   const validateFrom = () => {
     let error = {};
     const min = 3,
@@ -63,11 +64,13 @@ export default function Account() {
     const isBetween = (length, min, max) =>
       length < min || length > max ? false : true;
     const isPasswordSecure = (password) => {
+      //reguler expression
       const re = new RegExp(
         "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
       );
       return re.test(password);
     };
+    //email validation
     const isEmailValid = (email) => {
       const re =
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -113,9 +116,11 @@ export default function Account() {
     e.preventDefault();
     if (validateFrom()) {
       console.log(input,"input")
+      // cheking user details from database
       ApiPost("user/signin", input)
       .then((res) => {
          setInput({})
+         //storing data in local storage for future use
           localStorage.setItem("userData", JSON.stringify(res?.payload?.user));
           localStorage.setItem("token", res?.payload?.token);
           toast.success("Login Successfully.")
@@ -124,7 +129,7 @@ export default function Account() {
 
       .catch((err) => {
 
-        if(err?.code == 400){
+        if(err?.code === 400){
           toast.error(err.error);
         }
       })
@@ -144,7 +149,7 @@ export default function Account() {
 
       .catch((err) => {
 
-        if(err?.code == 400){
+        if(err?.code === 400){
           toast.error(err.error);
         }
       })
