@@ -1,0 +1,105 @@
+const list = [
+  {
+    id: 1,
+    title: "potato",
+    description:
+      " If it's terrible quality, it must have been shot on a potato camera",
+    quntity: 1,
+    price: 5,
+    category: "vegetable",
+    thumbnail: "image/product-1_1.png",
+    images: [
+      "image/product-1_1.png",
+      "image/product-1_2.png",
+      "image/product-1_3.png",
+      "image/product-1_4.png",
+    ],
+    comment: [],
+  },
+  {
+    id: 2,
+    title: "Tomato ",
+    description:
+      "Tomato royalty-free images. 4,953,869 tomato stock photos, vectors,",
+    quntity: 1,
+    price: 7,
+    category: "vegetable",
+    thumbnail: "image/product-2_1.png",
+    images: [
+      "image/product-2_1.png",
+      "image/product-2_2.png",
+      "image/product-2_3.png",
+      "image/product-2_4.png",
+    ],
+    comment: [],
+  },
+  {
+    id: 3,
+    title: "Ladies finger",
+    description:
+      "Ladyfinger, popularly known as bhindi in India, is rich in nutrients. ",
+    quntity: 1,
+    price: 10,
+    category: "vegetable",
+    thumbnail: "image/product-3_2.png",
+    images: [
+      "image/product-3_1.png",
+      "image/product-3_2.png",
+      "image/product-3_3.png",
+      "image/product-3_4.png",
+    ],
+    comment: [],
+  },
+  {
+    id: 4,
+    title: "Cabbage",
+    description:
+      "Cabbage, comprising several cultivars of Brassica oleracea, is a leafy ",
+    quntity: 1,
+    price: 8,
+    category: "vegetable",
+    thumbnail: "image/product-4_4.png",
+    images: [
+      "image/product-4_1.png",
+      "image/product-4_2.png",
+      "image/product-4_3.png",
+      "image/product-4_4.png",
+    ],
+    comment: [],
+  },
+  {
+    id: 5,
+    title: "Coriander",
+    description: "coriander, (Coriandrum sativum), also called cilantro ",
+    quntity: 1,
+    price: 499,
+    brand: "Huawei",
+    category: "vegetable",
+    thumbnail: "image/product-5_1.png",
+    images: [
+      "image/product-5_1.png",
+      "image/product-5_2.png",
+      "image/product-5_3.png",
+      "image/product-5_4.png",
+    ],
+    comment: [],
+  },
+  {
+    id: 6,
+    title: "Lemons",
+    description: "Lemons (Citrus limon) are among the world’s most popular",
+    quntity: 1,
+    price: 15,
+    category: "vegetable",
+    thumbnail: "image/product-6_1.png",
+    images: [
+      "image/product-6_1.png",
+      "image/product-6_3.png",
+      "image/product-6_2.png",
+      "image/product-6_4.png",
+    ],
+    comment: [],
+  },
+];
+
+export default list;
